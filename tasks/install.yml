@@ -20,3 +20,18 @@
   with_items:
   - apt-transport-https
   - ca-certificates
+  - curl
+  - gnupg2
+  - software-properties-common
+
+- name: Add Docker repository key
+  apt_key:
+    url: https://download.docker.com/linux/debian/gpg
+    id: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
+    state: present
+
+- name: Add Docker repository and update apt cache
+  apt_repository:
+    repo: "{{ docker_apt_repository }}"
+    state: present
+  update_cache: yes

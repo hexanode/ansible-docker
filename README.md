@@ -4,11 +4,7 @@ An Ansible Role that installs [Docker](https://www.docker.com) on Linux.
 
 ## Requirements
 
-None.
-
-## Dependencies
-
-None.
+Compliant with Debian 8 (Jessie) and Debian 9 (Stretch)
 
 ## Role Variables
 
