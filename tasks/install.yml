@@ -1,0 +1,22 @@
+---
+
+- name: Ensure old versions of Docker are not installed
+  apt:
+    name: {{ item }}
+    state: absent
+    update_cache: no
+  with_items:
+    - docker
+    - docker-engine
+    - docker.io
+
+- name: Install prerequisites and dependencies
+  apt:
+    name: {{ item }}
+    state: present
+    update_cache: no
+    install_recommends: no
+    cache_valid_time: 86400
+  with_items:
+  - apt-transport-https
+  - ca-certificates
