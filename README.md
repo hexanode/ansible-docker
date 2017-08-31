@@ -23,3 +23,5 @@ Modifiables variables and possible values are listed below :
 ## Author Information
 
 This role is maintained by maximiliend
+
+Licence : GPLv3
