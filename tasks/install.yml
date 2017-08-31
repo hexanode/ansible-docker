@@ -2,7 +2,7 @@
 
 - name: Ensure old versions of Docker are not installed
   apt:
-    name: {{ item }}
+    name: "{{ item }}"
     state: absent
     update_cache: no
   with_items:
@@ -12,7 +12,7 @@
 
 - name: Install prerequisites and dependencies
   apt:
-    name: {{ item }}
+    name: "{{ item }}"
     state: present
     update_cache: no
     install_recommends: no
@@ -33,5 +33,20 @@
 - name: Add Docker repository and update apt cache
   apt_repository:
     repo: "{{ docker_apt_repository }}"
+    filename: 'docker'
     state: present
-  update_cache: yes
+    update_cache: yes
+
+- name: Install Docker
+  apt:
+    name: "{{ docker_package }}"
+    state: present
+    update_cache: no
+    install_recommends: no
+    cache_valid_time: 86400
+
+- name: Ensure Docker is started and enabled at boot.
+  service:
+    name: docker
+    state: started
+    enabled: yes

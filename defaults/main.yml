@@ -1,5 +1,10 @@
 ---
 
-# Used only for Debian. Switch 'stable' to 'edge' if needed.
+#####################################
+# Default variables for docker role #
+#####################################
+
+docker_edition: 'ce'
+docker_package: "docker-{{ docker_edition }}"
 docker_apt_release_channel: stable
 docker_apt_repository: "deb https://download.docker.com/linux/{{ ansible_distribution|lower }} {{ ansible_distribution_release }} {{ docker_apt_release_channel }}"

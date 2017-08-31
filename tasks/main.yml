@@ -1,12 +1,12 @@
 ---
 
-# OS Verification
+# OS support verification
 
 - fail:
     msg: "Unsupported OS for docker role. Currently supported : Debian 9 (Stretch)"
   when: ansible_os_family != "Debian" and ( ansible_distribution_major_version == "9" or ansible_distribution_major_version == "8" )
 
-# Install
+# Install docker
 
 - include: install.yml
   tags: docker_install
