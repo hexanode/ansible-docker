@@ -1,0 +1,22 @@
+galaxy_info:
+  author: "Maximilien Douchet"
+  description: "An Ansible Role that installs Docker on Linux."
+  company: "Kabolt"
+  license: "license GPLv3"
+  min_ansible_version: 2.0
+  github_branch: master
+  platforms:
+    - name: Debian
+      versions:
+        - jessie
+        - stretch
+  galaxy_tags:
+    - docker
+    - docker-ce
+    - docker-ee
+    - orchestration
+    - containers
+    - system
+    - server
+
+dependencies: []
