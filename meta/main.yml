@@ -12,8 +12,6 @@ galaxy_info:
         - stretch
   galaxy_tags:
     - docker
-    - docker-ce
-    - docker-ee
     - orchestration
     - containers
     - system
