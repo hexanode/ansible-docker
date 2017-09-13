@@ -1,0 +1,33 @@
+---
+
+# - name: Install docker-compose from repository
+#   apt:
+#     name: "docker-compose"
+#     state: present
+#   when: ansible_distribution_major_version == "9"
+
+- name: 'Ensure packaged versions of docker-compose are not installed'
+  apt:
+    name: 'docker-compose'
+    state: absent
+
+- name: 'Check current version of docker-compose'
+  shell: docker-compose --version
+  register: docker_compose_current_version
+  changed_when: false
+  failed_when: false
+
+- name: 'Delete existing docker-compose if versions differ'
+  file:
+    path: "{{ docker_compose_path }}"
+    state: absent
+  when:
+    - docker_compose_current_version.stdout is defined
+    - docker_compose_version not in docker_compose_current_version.stdout
+
+- name: "Download docker-compose (version {{ docker_compose_version }})"
+  get_url:
+    url: https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-Linux-x86_64
+    dest: "{{ docker_compose_path }}"
+    mode: 0755
+    force: no

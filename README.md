@@ -26,6 +26,9 @@ Modifiables variables and possible values are listed below :
 - docker_edition: 'ce' (Community Edition) or 'ee' (Entreprise Edition)
 - docker_package: "docker-{{ docker_edition }}" (Latest version) or "docker-{{ docker_edition }}-<VERSION>" (Specific version)
 - docker_apt_release_channel: 'stable' (Take packages from Stable channel) or 'edge' (From Edge channel)
+- docker_compose_install: 'true' or 'false', Install or not docker-compose
+- docker_compose_version: '1.15.0', docker-compose version
+- docker_compose_path: '/usr/local/bin/docker-compose' docker-compose path
 
 
 Dependencies
