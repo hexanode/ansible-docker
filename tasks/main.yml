@@ -13,3 +13,9 @@
 
 - include: install.yml
   tags: docker_install
+
+# Install Docker Compose
+
+- include: compose.yml
+  tags: docker_compose
+  when: docker_compose_install
