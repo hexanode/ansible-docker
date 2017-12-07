@@ -12,11 +12,13 @@
 
 # Install docker
 
-- include: install.yml
+- name: Static import of install
+  import_tasks: install.yml
   tags: docker_install
 
 # Install Docker Compose
 
-- include: compose.yml
+- name: Static import of compose
+  import_tasks: compose.yml
   tags: docker_compose
   when: docker_compose_install
