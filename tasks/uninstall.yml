@@ -1,0 +1,38 @@
+---
+
+# Independant and simple playbook for removing docker
+
+# /!\ Be careful, this will remove and purge docker, you will lost images, containers, configurations...
+
+- hosts: all
+  remote_user: root
+  tasks:
+    - name: Remove Docker packages
+      apt:
+        name: "{{ item }}"
+        state: absent
+        update_cache: no
+        purge: yes
+        autoremove: yes
+      with_items:
+        - docker
+        - docker-engine
+        - docker.io
+        - docker-ce
+        - docker-ee
+    - name: Delete existing docker-compose
+      file:
+        path: /usr/local/bin/docker-compose
+        state: absent
+    - name: Delete existing docker apt list
+      file:
+        path: /etc/apt/sources.list.d/docker.list
+        state: absent
+    - name: Delete docker var directory
+      file:
+        path: /var/lib/docker
+        state: absent
+    - name: Remove docker group
+      group:
+        name: docker
+        state: absent
