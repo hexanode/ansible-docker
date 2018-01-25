@@ -3,7 +3,7 @@ Ansible Role: Docker
 
 An Ansible Role that installs [Docker](https://www.docker.com) Community Edition & Enterprise Edition with docker-compose on Linux.
 
-We follow the KISS principle.
+We want this role as simple, configurable and interoperable as possible.
 
 Requirements
 ------------
@@ -30,7 +30,7 @@ docker_package: "docker-{{ docker_edition }}" (Latest version) or "docker-{{ doc
 docker_apt_release_channel: 'stable' (Take packages from Stable channel) or 'edge' (From Edge channel)
 
 docker_compose_install: 'true' or 'false', Install or not docker-compose
-docker_compose_version: '1.17.1', docker-compose version
+docker_compose_version: '1.18.0', docker-compose version
 docker_compose_path: '/usr/local/bin/docker-compose' docker-compose path
 ```
 
