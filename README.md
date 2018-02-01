@@ -56,7 +56,6 @@ ToDo
 
 - Add tests
 - Add CI Integration
-- Provide docker uninstall
 
 
 License
