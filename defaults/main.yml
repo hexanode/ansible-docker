@@ -14,5 +14,5 @@ docker_apt_repository: "deb https://download.docker.com/linux/{{ ansible_distrib
 # Docker Compose options
 
 docker_compose_install: true
-docker_compose_version: '1.20.1'
+docker_compose_version: '1.21.1'
 docker_compose_path: '/usr/local/bin/docker-compose'
