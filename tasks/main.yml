@@ -16,6 +16,12 @@
   import_tasks: install.yml
   tags: docker_install
 
+# Firewall
+
+- name: Static import of firewall
+  import_tasks: firewall.yml
+  tags: docker_firewall
+
 # Install Docker Compose
 
 - name: Static import of compose

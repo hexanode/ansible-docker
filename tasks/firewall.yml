@@ -1,0 +1,37 @@
+---
+
+# Copyright (c) 2018 Kabolt
+# GNU General Public License v3.0+ (see LICENSE or https://www.gnu.org/licenses/gpl-3.0.txt)
+
+- name: Create systemd docker directory
+  file:
+    path: /etc/systemd/system/docker.service.d
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  when:
+    - docker_disable_iptables_management
+
+- name: Create noiptables.conf systemd docker's configuration
+  copy:
+    src: noiptables.conf
+    dest: /etc/systemd/system/docker.service.d/noiptables.conf
+    owner: root
+    group: root
+    mode: 0755
+  notify:
+    - Reload systemctl daemon
+    - Restart Docker
+  when:
+    - docker_disable_iptables_management
+
+- name: Delete systemd docker directory
+  file:
+    path: /etc/systemd/system/docker.service.d
+    state: absent
+  notify:
+    - Reload systemctl daemon
+    - Restart Docker
+  when:
+    - not docker_disable_iptables_management
