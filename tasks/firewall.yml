@@ -35,3 +35,8 @@
     - Restart Docker
   when:
     - not docker_disable_iptables_management
+
+- name: Export docker_firewall_rules to a 'host-fact' type variable
+  set_fact:
+    docker_firewall_rules: "{{ docker_firewall_rules_var }}"
+  tags: always
