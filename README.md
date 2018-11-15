@@ -31,13 +31,19 @@ docker_package: "docker-{{ docker_edition }}"           # Default is the latest 
 docker_apt_release_channel: 'stable'                    # Default is take packages from Stable channel, set 'edge' for edge channel
 docker_apt_repository: "deb https://download.docker.com/linux/{{ ansible_distribution|lower }} {{ ansible_distribution_release }} {{ docker_apt_release_channel }}"
 
-# Docker firewall options
-docker_disable_iptables_management: false               # Set to true in order to disable iptables rules management by docker
-
 # Docker Compose options
 docker_compose_install: true                            # Set to false in order to uninstall docker compose
 docker_compose_version: '1.22.0'                        # Docker-compose version
 docker_compose_path: '/usr/local/bin/docker-compose'    # Update it for a custom docker-compose path
+
+# Docker firewall options
+docker_disable_iptables_management: false               # Set to true in order to disable iptables rules management by docker
+docker_firewall_primary_if: 'eth0'                      # Set the default primary interface (with wan connection), or override rules_var
+
+# Docker firewall rules variable designed to become a fact
+docker_firewall_rules_var:
+  - { chain: 'FORWARD',  in_if: '{{ docker_firewall_primary_if }}', out_if: 'docker0', policy: 'ACCEPT' }
+  - { chain: 'FORWARD',  out_if: '{{ docker_firewall_primary_if }}', in_if: 'docker0', policy: 'ACCEPT' }
 ```
 
 Dependencies
