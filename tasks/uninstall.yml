@@ -9,12 +9,13 @@
   tasks:
     - name: Remove Docker packages
       apt:
-        name: "{{ item }}"
+        name: "{{ packages }}"
         state: absent
         update_cache: no
         purge: yes
         autoremove: yes
-      with_items:
+      vars:
+        packages:
         - docker
         - docker-engine
         - docker.io
