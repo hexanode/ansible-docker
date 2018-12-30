@@ -60,7 +60,7 @@ How to use the role in your ansible playbook.
     - name: Playbook Task to install docker role
       hosts: docker-servers (Group of servers on which you want to install docker)
       roles:
-         - { role: kabolt.docker, tags: [ 'docker' ] }
+         - { role: hexanode.docker, tags: [ 'docker' ] }
 
 
 ToDo
