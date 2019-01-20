@@ -27,7 +27,7 @@ Modifiables variables and possible values are listed below :
 ```
 # Docker options
 docker_edition: 'ce'                                    # Default is 'ce' for Community Edition, set 'ee' for Entreprise Edition
-docker_package: "docker-{{ docker_edition }}"           # Default is the latest version, set docker-{{ docker_edition }}-<VERSION>" for a specific version
+docker_package: "docker-{{ docker_edition }}"           # Default is the latest version, set docker-{{ docker_edition }}=<VERSION>" for a specific version
 docker_apt_release_channel: 'stable'                    # Default is take packages from Stable channel, set 'edge' for edge channel
 docker_apt_repository: "deb https://download.docker.com/linux/{{ ansible_distribution|lower }} {{ ansible_distribution_release }} {{ docker_apt_release_channel }}"
 
