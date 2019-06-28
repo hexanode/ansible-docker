@@ -4,6 +4,8 @@
 # Default variables for docker role #
 #####################################
 
+role_docker: false
+
 # Docker options
 docker_edition: 'ce'                                    # Default is 'ce' for Community Edition, set 'ee' for Entreprise Edition
 docker_package: "docker-{{ docker_edition }}"           # Default is the latest version, set docker-{{ docker_edition }}-<VERSION>" for a specific version
