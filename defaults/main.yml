@@ -18,7 +18,7 @@ docker_compose_version: '1.24.0'                        # Docker-compose version
 docker_compose_path: '/usr/local/bin/docker-compose'    # Update it for a custom docker-compose path
 
 # Docker firewall options
-docker_disable_iptables_management: false               # Set to true in order to disable iptables rules management by docker
+docker_disable_iptables_management: false               # Set to true in order to disable iptables rules management by docker
 docker_firewall_primary_if: 'eth0'                      # Set the default primary interface (with wan connection), or override rules_var
 
 # Docker firewall rules variable designed to become a fact
