@@ -11,7 +11,7 @@
     group: root
     mode: 0755
   when:
-    - docker_disable_iptables_management
+    - docker_disable_iptables_management|bool
 
 - name: Create noiptables.conf systemd docker's configuration
   copy:
@@ -24,7 +24,7 @@
     - Reload systemctl daemon
     - Restart Docker
   when:
-    - docker_disable_iptables_management
+    - docker_disable_iptables_management|bool
 
 - name: Delete systemd docker directory
   file:
@@ -34,7 +34,7 @@
     - Reload systemctl daemon
     - Restart Docker
   when:
-    - not docker_disable_iptables_management
+    - not docker_disable_iptables_management|bool
 
 - name: Export docker_firewall_rules to a 'host-fact' type variable
   set_fact:
