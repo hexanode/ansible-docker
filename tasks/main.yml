@@ -7,8 +7,8 @@
 
 - name: Check OS support
   fail:
-    msg: "Unsupported OS for docker role. Currently supported : Debian 8 & Debian 9"
-  when: ansible_os_family != "Debian" or ( ansible_distribution_major_version != "9" and ansible_distribution_major_version != "8" )
+    msg: "Unsupported OS for docker role. Currently supported : Debian 8, Debian 9 and Debian 10"
+  when: ansible_os_family != "Debian" or ( ansible_distribution_major_version is version('8', '<') and ansible_distribution_major_version is version('10', '>') )
 
 # Install docker
 
@@ -27,4 +27,4 @@
 - name: Static import of compose
   import_tasks: compose.yml
   tags: docker_compose
-  when: docker_compose_install
+  when: docker_compose_install|bool
