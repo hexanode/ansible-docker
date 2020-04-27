@@ -4,9 +4,10 @@
 # GNU General Public License v3.0+ (see LICENSE or https://www.gnu.org/licenses/gpl-3.0.txt)
 
 - name: Reload systemctl daemon
-  command: systemctl daemon-reload
+  systemd:
+    daemon_reload: yes
 
 - name: Restart Docker
-  service:
+  systemd:
     name: docker
     state: restarted
