@@ -1,6 +1,6 @@
 ---
 
-# Copyright (c) 2018 Hexanode
+# Copyright (c) 2020 Hexanode
 # GNU General Public License v3.0+ (see LICENSE or https://www.gnu.org/licenses/gpl-3.0.txt)
 
 # OS support verification
@@ -28,3 +28,9 @@
   import_tasks: compose.yml
   tags: docker_compose
   when: docker_compose_install|bool
+
+# Cron
+
+- name: Static import of cron
+  import_tasks: cron.yml
+  tags: docker_cron

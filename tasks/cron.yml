@@ -1,0 +1,25 @@
+---
+
+# Copyright (c) 2020 Hexanode
+# GNU General Public License v3.0+ (see LICENSE or https://www.gnu.org/licenses/gpl-3.0.txt)
+
+- name: Generate Crons for Docker
+  cron:
+    name: "{{ item.name }}"
+    user: "{{ item.user | default('root') }}"
+    job: "{{ item.job }}"
+    minute: "{{ item.min | default('*') }}"
+    hour: "{{ item.hour | default('*') }}"
+    day: "{{ item.day | default('*') }}"
+    month: "{{ item.month | default('*') }}"
+    weekday: "{{ item.weekday | default('*') }}"
+    cron_file: "{{ docker_cronfile_path }}"
+  with_items: "{{ docker_crons_list }}"
+  when: not docker_cron_disable|bool
+
+- name: Delete cron file
+  file:
+    path: "{{ docker_cronfile_path }}"
+    state: absent
+  notify: Restart Cron Docker
+  when: docker_cron_disable|bool
