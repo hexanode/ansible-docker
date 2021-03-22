@@ -34,12 +34,12 @@ docker_crons_list:
   - name: prune_docker
     job: "/usr/bin/docker system prune -f"
     hour: "8"
-    minute: "30"
+    min: "30"
     weekday: "2-7"
     user: "root"
   - name: prune_docker_all
     job: "/usr/bin/docker system prune -f -a"
     hour: "8"
-    minute: "30"
+    min: "30"
     weekday: "1"
     user: "root"

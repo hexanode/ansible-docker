@@ -32,12 +32,19 @@
     id: 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
     state: present
 
-- name: Add Docker repository and update apt cache
-  apt_repository:
-    repo: "{{ docker_apt_repository }}"
-    filename: 'docker'
-    state: present
+- name: Generate Docker apt repository
+  template:
+    src: etc/apt/sources.list.d/docker.list.j2
+    dest: /etc/apt/sources.list.d/docker.list
+    owner: root
+    group: root
+    mode: 0444
+  register: docker_apt_sources_list
+
+- name: Update Apt cache for Docker
+  apt:
     update_cache: yes
+  when: docker_apt_sources_list.changed
 
 - name: Install Docker
   apt:
