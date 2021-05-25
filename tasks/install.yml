@@ -59,3 +59,12 @@
     name: docker
     state: started
     enabled: yes
+
+- name: Generate Docker daemon.json
+  template:
+    src: etc/docker/daemon.json.j2
+    dest: /etc/docker/daemon.json
+    owner: root
+    group: root
+    mode: 0444
+  notify: Restart Docker
