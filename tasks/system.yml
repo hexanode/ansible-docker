@@ -1,0 +1,25 @@
+---
+
+# Copyright (c) 2020 Hexanode
+# GNU General Public License v3.0+ (see LICENSE or https://www.gnu.org/licenses/gpl-3.0.txt)
+
+- name: Create systemd docker directory
+  file:
+    path: /etc/systemd/system/docker.service.d
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Generate docker.service systemd configuration
+  template:
+    src: lib/systemd/system/docker.service.j2
+    dest: /lib/systemd/system/docker.service
+    owner: root
+    group: root
+    mode: 0755
+  notify:
+    - Reload systemctl daemon
+    - Restart Docker
+  when:
+    - docker_disable_iptables_management|bool

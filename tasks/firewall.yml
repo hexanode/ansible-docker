@@ -3,19 +3,9 @@
 # Copyright (c) 2020 Hexanode
 # GNU General Public License v3.0+ (see LICENSE or https://www.gnu.org/licenses/gpl-3.0.txt)
 
-- name: Create systemd docker directory
-  file:
-    path: /etc/systemd/system/docker.service.d
-    state: directory
-    owner: root
-    group: root
-    mode: 0755
-  when:
-    - docker_disable_iptables_management|bool
-
 - name: Create noiptables.conf systemd docker's configuration
   copy:
-    src: noiptables.conf
+    src: etc/systemd/system/docker.service.d/noiptables.conf
     dest: /etc/systemd/system/docker.service.d/noiptables.conf
     owner: root
     group: root
@@ -26,9 +16,9 @@
   when:
     - docker_disable_iptables_management|bool
 
-- name: Delete systemd docker directory
+- name: Delete noiptables.conf systemd docker's configuration
   file:
-    path: /etc/systemd/system/docker.service.d
+    path: /etc/systemd/system/docker.service.d/noiptables.conf
     state: absent
   notify:
     - Reload systemctl daemon
