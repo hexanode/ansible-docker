@@ -16,6 +16,10 @@
   import_tasks: install.yml
   tags: docker_install
 
+- name: Static import of system
+  import_tasks: system.yml
+  tags: docker_system
+
 # Firewall
 
 - name: Static import of firewall

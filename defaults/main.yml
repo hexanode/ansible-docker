@@ -43,3 +43,5 @@ docker_crons_list:
     min: "30"
     weekday: "1"
     user: "root"
+
+docker_insecure_registries: []
