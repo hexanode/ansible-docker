@@ -13,8 +13,8 @@
 
 - name: Generate docker.service systemd configuration
   template:
-    src: etc/systemd/system/multi-user.target.wants/docker.service.j2
-    dest: /etc/systemd/system/multi-user.target.wants/docker.service
+    src: lib/systemd/system/docker.service.j2
+    dest: /lib/systemd/system/docker.service
     owner: root
     group: root
     mode: 0755
