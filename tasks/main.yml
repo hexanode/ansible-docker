@@ -4,11 +4,15 @@
 # GNU General Public License v3.0+ (see LICENSE or https://www.gnu.org/licenses/gpl-3.0.txt)
 
 # OS support verification
-
 - name: Check OS support
   fail:
-    msg: "Unsupported OS for docker role. Currently supported : Debian 8, Debian 9 and Debian 10"
-  when: ansible_os_family != "Debian" or ( ansible_distribution_major_version is version('8', '<') and ansible_distribution_major_version is version('10', '>') )
+    msg: "Unsupported OS for users role. Currently supported : Debian 8 to 11 included and Ubuntu 20"
+  when: >
+    (ansible_distribution != 'Debian' and ansible_distribution != 'Ubuntu')
+    or
+    (ansible_distribution == 'Debian' and (ansible_distribution_major_version is version('8', '<') or ansible_distribution_major_version is version('11', '>')))
+    or
+    (ansible_distribution == 'Ubuntu' and (ansible_distribution_major_version is version('20', '!=')))
 
 # Install and configure docker
 
