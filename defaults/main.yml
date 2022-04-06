@@ -14,7 +14,7 @@ docker_apt_repository: "deb [arch=amd64] https://download.docker.com/linux/{{ an
 
 # Docker Compose options
 docker_compose_install: true                            # Set to false in order to uninstall docker compose
-docker_compose_version: '1.29.2'                        # Docker-compose version
+docker_compose_version: '2.4.1'                         # Docker-compose version
 docker_compose_path: '/usr/local/bin/docker-compose'    # Update it for a custom docker-compose path
 
 # Docker firewall options
